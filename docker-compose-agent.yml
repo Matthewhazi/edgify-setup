@@ -7,6 +7,8 @@ services:
       - REACT_APP_PREDICTOR_HOST=localhost
     ports:
       - '3000:80'
+    networks: 
+      - edgify-network      
 
   edgify-agent:
     image: edgify/edgify-agent:0.0.1
@@ -23,6 +25,8 @@ services:
     volumes: 
       - /etc/edgify/agent/database:/edgify/database
       - /etc/edgify/agent/datamanager:/edgify/datamanager
+    networks: 
+      - edgify-network      
 
   edgify-device-manager:
     container_name: edgify-device-manager
@@ -37,3 +41,27 @@ services:
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock:rw
      - /etc/edgify/:/etc/edgify/
+    networks: 
+      - edgify-network
+      
+  netdata:
+    container_name: netdata
+    image: netdata/netdata
+    environment:
+      - PGID=999
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys.ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+    networks:
+      - edgify-network
+networks:
+  edgify-network:     

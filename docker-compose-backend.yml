@@ -1,0 +1,54 @@
+version: '3'
+services:
+  edgify-device-manager:
+    container_name: edgify/device-manager
+    image: edgify/device-manager
+    environment:
+      - EDGIFY_DEVICE_TOKEN=
+      - EDGIFY_BASE_URL=https://dashboard.qa.edgify.ai/api/v1/edge
+      - EDGIFY_UPDATE_STATE_INTERVAL=60
+      - EDGIFY_SOCKET_URL=wss://dashboard.qa.edgify.ai/adonis-ws
+      - EDGIFY_SHARED_FOLDER=/etc/edgify
+      - EDGIFY_DATA_STREAM_FOLDER=/etc/edgify/stream-data
+      - EDGIFY_DATA_STREAM_URL=http://127.0.0.1:8000
+      - EDGIFY_UI_HOST=broker
+      - EDGFIY_ANALYTICS_HOST=analytics
+      - EDGIFY_VIDEO_HOST=vs
+      - EDGIFY_LOCAL_IP=192.168.7.233
+    networks: 
+      - edgify-network
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock:rw
+     - /etc/edgify/:/etc/edgify/
+     
+  netdata:
+    container_name: edgify-netdata
+    image: netdata/netdata
+    environment:
+      - PGID=999
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys.ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+    networks:
+      - edgify-network
+      
+  redis:
+    container_name: edgify-redis
+    image: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+    network_mode: host
+    
+networks:
+  edgify-network:
