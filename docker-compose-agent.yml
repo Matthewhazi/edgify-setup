@@ -1,0 +1,39 @@
+version: '3'
+services:
+  edgify-pos-ui-demo: 
+    image: edgify/edgify-pos-ui-demo
+    container_name: edgify-pos-ui-demo
+    environment:
+      - REACT_APP_PREDICTOR_HOST=localhost
+    ports:
+      - '3000:80'
+
+  edgify-agent:
+    image: edgify/edgify-agent:0.0.1
+    container_name: edgify-agent
+    devices:
+      - '/dev/video0:/dev/video0'
+    ports: 
+      - '8080:8080'
+    environment:
+      - EDGIFY_DATABASE_PATH=/edgify/database/db_file
+      - EDGIFY_DATAMANAGER_PATH=/edgify/datamanager
+      - EDGIFY_API_TOKEN=
+      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge/    
+    volumes: 
+      - /etc/edgify/agent/database:/edgify/database
+      - /etc/edgify/agent/datamanager:/edgify/datamanager
+
+  edgify-device-manager:
+    container_name: edgify-device-manager
+    image: edgify/edgify-device-manager:247f328
+    environment:
+      - EDGIFY_DEVICE_TOKEN=
+      - EDGIFY_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
+      - EDGIFY_UPDATE_STATE_INTERVAL=60
+      - EDGIFY_SOCKET_URL=wss://dashboard.prod.edgify.ai/adonis-ws
+      - EDGIFY_SHARED_FOLDER=/etc/edgify
+      - EDGIFY_DATA_STREAM_FOLDER=/etc/edgify/stream-data
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock:rw
+     - /etc/edgify/:/etc/edgify/
