@@ -11,7 +11,7 @@ services:
       - edgify-network      
 
   edgify-agent:
-    image: edgify/edgify-agent:0.0.1
+    image: edgify/edgify-agent:0.0.2
     container_name: edgify-agent
     devices:
       - '/dev/video0:/dev/video0'
