@@ -2,7 +2,7 @@ version: '3.8'
 services:
   web:
     container_name: pos-ui-demo
-    image: 'edgify/edgify-pos-ui-demo:shufersal10'
+    image: 'edgify/edgify-pos-ui-demo:shufersal13'
     environment:
       - REACT_APP_PREDICTOR_HOST=localhost
     #volumes:  
@@ -11,7 +11,7 @@ services:
       - '3000:80'
   device-manager:
     container_name: device-manager
-    image: 'edgify/edgify-device-manager:e5d5671'
+    image: 'edgify/edgify-device-manager:b601165'
     environment:
       - EDGIFY_DEVICE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjMsImRldmljZUlkIjo0MCwicm9sZSI6IlJPTEVfREVWSUNFIiwidHlwZSI6InJlYWwiLCJpYXQiOjE1ODk3MTU5OTR9.NlmunBP1VeSR3too6fsBRbsOsX4GHzIBWnWq9-Gkl7Q
       - EDGIFY_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
@@ -20,6 +20,9 @@ services:
       - EDGIFY_SHARED_FOLDER=/etc/edgify
       - EDGIFY_DATA_STREAM_FOLDER=/etc/edgify/stream-data
       - EDGIFY_DATA_STREAM_URL=127.0.0.1:50051
+      - EDGIFY_VIDEOSTREAM_ENABLED=true
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
+      - EDGIFY_PREDICTOR_NUMBER_OF_CLASSES_TO_SHOW=5
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - /etc/edgify/:/etc/edgify/
