@@ -2,7 +2,7 @@ version: '3'
 services:
   edgify-device-manager:
     container_name: edgify-device-manager
-    image: edgify/edgify-device-manager:247f328
+    image: edgify/edgify-device-manager:b601165
     environment:
       - EDGIFY_DEVICE_TOKEN=
       - EDGIFY_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
