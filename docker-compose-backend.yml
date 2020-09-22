@@ -1,19 +1,32 @@
-version: '3'
+version: '3.8'
 services:
-  edgify-device-manager:
-    container_name: edgify-device-manager
-    image: edgify/edgify-device-manager:b601165
+  edgify-agent:
+    container_name: edgify-agent
+    image: 'edgify/edgify-agent:1.4.1-cpu'
     environment:
-      - EDGIFY_DEVICE_TOKEN=
-      - EDGIFY_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
+      - EDGIFY_API_TOKEN=
+      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1
       - EDGIFY_UPDATE_STATE_INTERVAL=60
-      - EDGIFY_SOCKET_URL=wss://dashboard.prod.edgify.ai/adonis-ws
-      - EDGIFY_SHARED_FOLDER=/etc/edgify
-    networks: 
-      - edgify-network
+      - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.prod.edgify.ai
+      - EDGIFY_API_WEBSOCKET_PROTOCOL=wss
+      - EDGIFY_DEVICEMANAGER_WORKER_SHARED_FOLDER=/edgify_agent/shared/worker_shared
+      - EDGIFY_DATAMANAGER_PATH=/edgify_agent/shared/samples
+      - EDGIFY_DEVICEMANAGER_MODELS_FOLDER=/edgify_agent/shared/model
+      - EDGIFY_DATABASE_PATH=/edgify_agent/shared/edgify.db
+      - EDGIFY_VIDEOSTREAM_ENABLED=false
+      - EDGIFY_DEVICEMANAGER_LOCAL_IP=127.0.0.1
+      - EDGIFY_VIDEOSTREAM_CROP_ENABLE=false
     volumes:
-     - /var/run/docker.sock:/var/run/docker.sock:rw
-     - /etc/edgify/:/etc/edgify/
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /etc/edgify/:/etc/edgify/
+      - /edgify_agent/shared:/edgify_agent/shared
+      - ~/.docker/config.json:/root/.docker/config.json
+    ports:
+      - '8080:8080'
+      - '9876:9876'
+      - '50051:50051'
+    networks:
+      - edgify-network
      
   netdata:
     container_name: edgify-netdata
@@ -42,7 +55,9 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - 6379:6379
-    network_mode: host
+    networks:
+      - edgify-network
     
 networks:
   edgify-network:
+    name: edgify-network
