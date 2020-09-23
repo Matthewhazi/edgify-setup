@@ -5,7 +5,7 @@ services:
     image: 'edgify/edgify-agent:1.4.1-cpu'
     environment:
       - EDGIFY_API_TOKEN=
-      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1
+      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
       - EDGIFY_UPDATE_STATE_INTERVAL=60
       - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.prod.edgify.ai
       - EDGIFY_API_WEBSOCKET_PROTOCOL=wss
@@ -18,7 +18,6 @@ services:
       - EDGIFY_VIDEOSTREAM_CROP_ENABLE=false
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
-      - /etc/edgify/:/etc/edgify/
       - /edgify_agent/shared:/edgify_agent/shared
       - ~/.docker/config.json:/root/.docker/config.json
     ports:
