@@ -2,7 +2,7 @@ version: '3.8'
 services:
   web:
     container_name: pos-ui-demo
-    image: 'edgify/edgify-pos-ui-demo:shufersal14'
+    image: 'edgify/edgify-pos-ui-demo:2a8a1e6'
     environment:
       - REACT_APP_PREDICTOR_HOST=localhost
     #volumes:  
