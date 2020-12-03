@@ -2,7 +2,7 @@ version: '3.8'
 services:
   edgify-setup-ui: 
     container_name: edgify-setup-ui
-    image: 'edgify/edgify-setup-ui:latest'
+    image: 'edgify/edgify-setup-ui:cb1f17e'
     #volumes:
     #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json      
     ports:
