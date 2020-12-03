@@ -7,7 +7,9 @@ services:
     #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json      
     ports:
       - '3000:80'
-
+    networks:
+      - edgify-network
+      
   edgify-agent:
     container_name: edgify-agent
     image: 'edgify/edgify-agent:1.5.0'
