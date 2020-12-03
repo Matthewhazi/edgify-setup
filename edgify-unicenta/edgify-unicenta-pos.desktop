@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Edgify-Unicenta-POS
+Comment=
+Exec=docker start unicenta_app
+Icon=/edgify/unicenta-pos/edgify_logo.png
+Type=Application
+StartupNotify=true
