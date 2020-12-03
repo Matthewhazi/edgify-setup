@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  edgify-agent:
+    container_name: edgify-agent
+    image: 'edgify/edgify-agent:1.5.0'
+    environment:
+      - EDGIFY_API_TOKEN=
+      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
+      - EDGIFY_UPDATE_STATE_INTERVAL=60
+      - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.prod.edgify.ai
+      - EDGIFY_API_WEBSOCKET_PROTOCOL=wss
+      - EDGIFY_DEVICEMANAGER_WORKER_SHARED_FOLDER=/edgify_agent/shared/worker_shared
+      - EDGIFY_DATAMANAGER_PATH=/edgify_agent/shared/samples
+      - EDGIFY_DEVICEMANAGER_MODELS_FOLDER=/edgify_agent/shared/model
+      - EDGIFY_DEVICEMANAGER_LOCAL_IP=127.0.0.1
+      - EDGIFY_DATABASE_PATH=/edgify_agent/shared/edgify.db
+      - EDGIFY_VIDEOSTREAM_ENABLED=false
+      - EDGIFY_VIDEOSTREAM_CROP_ENABLE=false
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /edgify_agent/shared:/edgify_agent/shared
+      - ~/.docker/config.json:/root/.docker/config.json
+    ports:
+      - '8080:8080'
+      - '9876:9876'
+      - '50051:50051'
+    networks:
+      - edgify-network
+      
+  redis:
+    container_name: edgify-redis
+    image: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+    networks:
+      - edgify-network
+    
+networks:
+  edgify-network:
+    name: edgify-network

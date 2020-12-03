@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    container_name: unicenta_db
+    volumes:
+      - /edgify/unicenta-pos/db_data:/var/lib/mysql
+      - /edgify/unicenta-pos/db_init:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: unicentaopos
+      MYSQL_USER: edgify
+      MYSQL_PASSWORD: 123456
+    ports:
+      - 3306:3306
+    networks:
+      - edgify-network
+
+  app:
+    image: edgify/edgify-unicenta-pos
+    container_name: unicenta_app
+    #command: ./opt/unicentaopos-4.6.2/configure.sh
+    environment:
+      DISPLAY: ${DISPLAY}
+      DB_HOST: unicenta_db
+      DB_PASSWORD: 123456
+    volumes:
+      - /edgify/unicenta-pos/app_data/unicentaopos.properties:/root/unicentaopos.properties
+      - /edgify/unicenta-pos/ui_skins/:/root/ui_skins/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    depends_on:
+      - db
+    networks:
+      - edgify-network      
+
+networks:
+  edgify-network:
+    name: edgify-network
