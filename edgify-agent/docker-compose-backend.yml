@@ -2,11 +2,11 @@ version: '3.8'
 services:
   edgify-agent:
     container_name: edgify-agent
-    image: 'edgify/edgify-agent:1.5.0'
+    image: 'edgify/edgify-agent:1.6.1'
     environment:
       - EDGIFY_API_TOKEN=
       - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
-      - EDGIFY_UPDATE_STATE_INTERVAL=60
+      - EDGIFY_UPDATE_STATE_INTERVAL=30
       - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.prod.edgify.ai
       - EDGIFY_API_WEBSOCKET_PROTOCOL=wss
       - EDGIFY_DEVICEMANAGER_WORKER_SHARED_FOLDER=/edgify_agent/shared/worker_shared
