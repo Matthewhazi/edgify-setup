@@ -1,6 +1,7 @@
 version: '3.8'
 services:
-  edgify-setup-ui: 
+  edgify-setup-ui:
+    restart: always 
     container_name: edgify-setup-ui
     image: 'edgify/edgify-setup-ui:cb1f17e'
     #volumes:
@@ -11,6 +12,7 @@ services:
       - edgify-network
       
   edgify-agent:
+    restart: always
     container_name: edgify-agent
     image: 'edgify/edgify-agent:1.6.1'
     environment:
