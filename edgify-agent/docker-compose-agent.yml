@@ -1,20 +1,20 @@
 version: '3.8'
 services:
-  edgify-setup-ui:
+  edgify-data-collector:
     restart: always 
     container_name: edgify-setup-ui
-    image: 'edgify/edgify-setup-ui:7b34ac4'
+    image: 'edgify/ edgify-data-collector:1.7.2'
     #volumes:
     #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json      
     ports:
-      - '3000:80'
+      - '3001:80'
     networks:
       - edgify-network
       
   edgify-agent:
     restart: always
     container_name: edgify-agent
-    image: 'edgify/edgify-agent:1.6.4'
+    image: 'edgify/edgify-agent:1.7.1'
     environment:
       - EDGIFY_API_TOKEN=
       - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
@@ -45,6 +45,7 @@ services:
     devices:
       - /dev/video0:/dev/video0
     ports:
+      - '3000:3000'
       - '8080:8080'
       - '9876:9876'
       - '50051:50051'
