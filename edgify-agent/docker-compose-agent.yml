@@ -3,7 +3,7 @@ services:
   edgify-data-collector:
     restart: always 
     container_name: edgify-setup-ui
-    image: 'edgify/ edgify-data-collector:1.7.2'
+    image: 'edgify/edgify-data-collector:1.7.2'
     #volumes:
     #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json      
     ports:
