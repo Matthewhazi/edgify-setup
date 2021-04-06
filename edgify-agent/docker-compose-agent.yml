@@ -5,7 +5,9 @@ services:
     container_name: edgify-data-collector
     image: 'edgify/edgify-data-collector:1.7.2'
     #volumes:
-    #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json      
+    #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json
+    #  - /home/ubuntu/item_images/config.json:/usr/share/nginx/html/item_images/config.json
+    #  - /home/ubuntu/item_images/images_pub:/usr/share/nginx/html/item_images/images_pub
     ports:
       - '3001:80'
     networks:
