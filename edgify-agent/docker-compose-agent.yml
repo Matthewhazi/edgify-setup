@@ -40,6 +40,7 @@ services:
       - EDGIFY_VIDEOSTREAM_FRAME_WIDTH=640
       - EDGIFY_VIDEOSTREAM_FRAME_HEIGHT=480
       - EDGIFY_PREDICTOR_NUMBER_OF_CLASSES_TO_SHOW=4
+      #- EDGIFY_VIDEOSTREAM_USE_READ_INSTEAD_OF_GRAB=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - /edgify_agent/shared:/edgify_agent/shared
