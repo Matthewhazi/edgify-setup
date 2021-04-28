@@ -45,6 +45,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - /edgify_agent/shared:/edgify_agent/shared
       - ~/.docker/config.json:/root/.docker/config.json
+      #- ~/config.json:/edgify_agent/setup-ui/clients/config.json
     devices:
       - /dev/video0:/dev/video0
     ports:

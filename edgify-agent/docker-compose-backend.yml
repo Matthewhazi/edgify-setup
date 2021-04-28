@@ -21,6 +21,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - /edgify_agent/shared:/edgify_agent/shared
       - ~/.docker/config.json:/root/.docker/config.json
+      #- ~/config.json:/edgify_agent/setup-ui/clients/config.json
     ports:
       - '3000:3000'
       - '8080:8080'
