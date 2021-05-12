@@ -28,7 +28,7 @@ services:
      
   model-convertor:
     restart: always
-    image: 'edgify/edgify-model-convertor:1.7.1'
+    image: 'edgify/edgify-model-convertor:1.8.0'
     container_name: edgify-convertor
     ports:
       - 8000:8000
@@ -38,7 +38,7 @@ services:
   app-server:
     restart: unless-stopped
     container_name: edgify-app-server
-    image: 'edgify/edgify-dashboard-server:1.7.0'
+    image: 'edgify/edgify-dashboard-server:1.8.0'
     env_file: .env
     environment:
       DB_HOST: postgres
@@ -68,7 +68,7 @@ services:
   app-dashboard:
     restart: unless-stopped
     container_name: edgify-dashboard
-    image: 'edgify/edgify-dashboard:1.6.4'
+    image: 'edgify/edgify-dashboard:1.8.0'
     ports: 
       - 8008:80
     volumes:
