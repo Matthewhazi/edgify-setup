@@ -3,7 +3,7 @@ services:
   edgify-agent:
     restart: always
     container_name: edgify-agent
-    image: 'edgify/edgify-agent:1.7.1'
+    image: 'edgify/edgify-agent:1.8.0'
     environment:
       - EDGIFY_API_TOKEN=
       - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
@@ -25,7 +25,6 @@ services:
     ports:
       - '3000:3000'
       - '8080:8080'
-      - '9876:9876'
       - '50051:50051'
     networks:
       - edgify-network
