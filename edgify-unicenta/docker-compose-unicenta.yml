@@ -18,7 +18,7 @@ services:
       - edgify-network
 
   app:
-    image: edgify/edgify-unicenta-pos
+    image: edgify/edgify-unicenta-pos:1.8.0
     container_name: unicenta_app
     #command: ./opt/unicentaopos-4.6.2/configure.sh
     environment:
