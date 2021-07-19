@@ -6,9 +6,9 @@ services:
     image: 'edgify/edgify-agent:1.8.2'
     environment:
       - EDGIFY_API_TOKEN=
-      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
+      - EDGIFY_API_BASE_URL=https://dashboard.staging.edgify.ai/api/v1/edge
       - EDGIFY_UPDATE_STATE_INTERVAL=30
-      - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.prod.edgify.ai
+      - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.staging.edgify.ai
       - EDGIFY_API_WEBSOCKET_PROTOCOL=wss
       - EDGIFY_DEVICEMANAGER_WORKER_SHARED_FOLDER=/edgify_agent/shared/worker_shared
       - EDGIFY_DATAMANAGER_PATH=/edgify_agent/shared/samples
