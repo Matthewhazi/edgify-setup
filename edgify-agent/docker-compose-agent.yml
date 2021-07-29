@@ -1,4 +1,5 @@
 version: '3.8'
+# Edgify version 1.8.1
 services:
   edgify-data-collector:
     restart: always 
