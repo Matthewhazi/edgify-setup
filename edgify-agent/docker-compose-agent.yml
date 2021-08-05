@@ -1,4 +1,6 @@
-# Edgify Version: 1.8.2
+#########################
+# Edgify Version: 1.8.2 #
+#########################
 version: '3.8'
 services:
   edgify-data-collector:
