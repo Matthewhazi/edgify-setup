@@ -19,7 +19,7 @@ services:
   edgify-agent:
     restart: always
     container_name: edgify-agent
-    image: 'edgify/edgify-agent:1.8.2'
+    image: 'edgify/edgify-agent:1.8.3'
     environment:
       - EDGIFY_API_TOKEN=
       - EDGIFY_API_BASE_URL=https://dashboard.staging.edgify.ai/api/v1/edge
