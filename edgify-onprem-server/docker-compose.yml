@@ -1,5 +1,5 @@
 #########################
-# Edgify Version: 1.8.2 #
+# Edgify Version: 1.9.0 #
 #########################
 version: '3.8'
 services:
@@ -31,7 +31,7 @@ services:
      
   model-convertor:
     restart: always
-    image: 'edgify/edgify-model-convertor:1.8.2'
+    image: 'edgify/edgify-model-convertor:1.9.0'
     container_name: edgify-convertor
     ports:
       - 8000:8000
@@ -41,7 +41,7 @@ services:
   app-server:
     restart: unless-stopped
     container_name: edgify-app-server
-    image: 'edgify/edgify-dashboard-server:1.8.2'
+    image: 'edgify/edgify-dashboard-server:1.9.2'
     env_file: .env
     environment:
       DB_HOST: postgres
@@ -71,7 +71,7 @@ services:
   app-dashboard:
     restart: unless-stopped
     container_name: edgify-dashboard
-    image: 'edgify/edgify-dashboard:1.8.3'
+    image: 'edgify/edgify-dashboard:1.9.2'
     ports: 
       - 8008:80
     volumes:

@@ -1,12 +1,12 @@
 #########################
-# Edgify Version: 1.8.2 #
+# Edgify Version: 1.9.0 #
 #########################
 version: '3.8'
 services:
   edgify-agent:
     restart: always
     container_name: edgify-agent
-    image: 'edgify/edgify-agent:1.8.3'
+    image: 'edgify/edgify-agent:1.9.0'
     environment:
       - EDGIFY_API_TOKEN=
       - EDGIFY_API_BASE_URL=https://dashboard.staging.edgify.ai/api/v1/edge
