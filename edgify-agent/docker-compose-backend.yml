@@ -28,6 +28,7 @@ services:
     ports:
       - '3000:3000'
       - '8080:8080'
+      - '8090:8090'
       - '50051:50051'
     networks:
       - edgify-network
