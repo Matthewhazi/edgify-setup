@@ -19,12 +19,12 @@ services:
   edgify-agent:
     restart: always
     container_name: edgify-agent
-    image: 'edgify/edgify-agent:1.9.1'
+    image: 'edgify/edgify-agent:1.9.2'
     environment:
       - EDGIFY_API_TOKEN=
-      - EDGIFY_API_BASE_URL=https://dashboard.staging.edgify.ai/api/v1/edge
+      - EDGIFY_API_BASE_URL=https://dashboard.prod.edgify.ai/api/v1/edge
       - EDGIFY_UPDATE_STATE_INTERVAL=30
-      - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.staging.edgify.ai
+      - EDGIFY_API_WEBSOCKET_ENDPOINT=dashboard.prod.edgify.ai
       - EDGIFY_API_WEBSOCKET_PROTOCOL=wss
       - EDGIFY_DATAMANAGER_PATH=/edgify_agent/shared/samples
       - EDGIFY_DEVICEMANAGER_WORKER_SHARED_FOLDER=/edgify_agent/shared/worker_shared
@@ -42,6 +42,17 @@ services:
       - EDGIFY_PREDICTOR_FILTERING_MODEL_CONFIG_PATH=      
       # - EDGIFY_VIDEOSTREAM_RECONNECT_ON_BLACK_SCREEN=true
       # - EDGIFY_VIDEOSTREAM_CROP_ENABLE=false
+      # - EDGIFY_PREDICTOR_RETRY_ITEMS=Eggplant  Potato OnionWhite BellPepperRed
+      # - EDGIFY_LOGGER_LOG_LEVEL=0
+      # - EDGIFY_LOGGER_CONSOLE_LOGGING_ENABLED=true
+      # - EDGIFY_LOGGER_ENCODE_LOGS_AS_JSON=false
+      # - EDGIFY_LOGGER_FILE_LOGGING_ENABLED=false
+      # - EDGIFY_LOGGER_DIRECTORY=./logs
+      # - EDGIFY_LOGGER_FILE_NAME=agent.log
+      # - EDGIFY_LOGGER_MAX_FILE_SIZE=100
+      # - EDGIFY_LOGGER_MAX_BACKUPS=10
+      # - EDGIFY_LOGGER_MAX_AGE=10
+      # - EDGIFY_PREDICTOR_RETRY_PERIOD=2000
       # - EDGIFY_VIDEOSTREAM_CROP_X1=166
       # - EDGIFY_VIDEOSTREAM_CROP_Y1=35
       # - EDGIFY_VIDEOSTREAM_CROP_X2=586
